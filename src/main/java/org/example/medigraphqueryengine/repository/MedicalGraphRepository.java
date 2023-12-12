@@ -75,14 +75,14 @@ public class MedicalGraphRepository {
     public Map<String, Set<String>> initializeNode() {
         return Map.of(
                 // 创建节点数据结构
-                "drugs", new HashSet<>(), // 药品
-                "foods", new HashSet<>(), // 食物
-                "checks", new HashSet<>(), // 检查
-                "departments", new HashSet<>(), // 科室
-                "producers", new HashSet<>(), // 药品生产商
-                "diseases", new HashSet<>(), // 疾病
-                "symptoms", new HashSet<>(), // 症状
-                "doctors", new HashSet<>() // 医生
+                "Drugs", new HashSet<>(), // 药品
+                "Foods", new HashSet<>(), // 食物
+                "Checks", new HashSet<>(), // 检查
+                "Departments", new HashSet<>(), // 科室
+                "Producers", new HashSet<>(), // 药品生产商
+                "Diseases", new HashSet<>(), // 疾病
+                "Symptoms", new HashSet<>(), // 症状
+                "Accompanies", new HashSet<>()// 并发症
         );
     }
 
@@ -92,14 +92,13 @@ public class MedicalGraphRepository {
                 Map.entry("DEPARTMENT_BELONGS_TO", new ArrayList<>()), // 科室-科室关系
                 Map.entry("NO_EAT", new ArrayList<>()), // 疾病-忌吃食物关系
                 Map.entry("DO_EAT", new ArrayList<>()), // 疾病-宜吃食物关系
-                Map.entry("RECOMMAND_EAT", new ArrayList<>()), // 疾病-推荐吃食物关系
+                Map.entry("RECOMMEND_EAT", new ArrayList<>()), // 疾病-推荐吃食物关系
                 Map.entry("COMMON_DRUG", new ArrayList<>()), // 疾病-通用药品关系
-                Map.entry("RECOMMAND_DRUG", new ArrayList<>()), // 疾病-热门药品关系
+                Map.entry("RECOMMEND_DRUG", new ArrayList<>()), // 疾病-热门药品关系
                 Map.entry("NEED_CHECK", new ArrayList<>()), // 疾病-检查关系
                 Map.entry("DRUGS_OF", new ArrayList<>()), // 药品-产生关系
-                Map.entry("DOCTOR_BELONGS_TO", new ArrayList<>()), // 医生-科室关系
                 Map.entry("HAS_SYMPTOM", new ArrayList<>()), // 疾病-症状关系
-                Map.entry("ACOMPANY_WITH", new ArrayList<>()), // 疾病-并发关系
+                Map.entry("ACCOMPANY_WITH", new ArrayList<>()), // 疾病-并发关系
                 Map.entry("DISEASE_BELONGS_TO", new ArrayList<>()) // 疾病-科室关系
         );
     }
