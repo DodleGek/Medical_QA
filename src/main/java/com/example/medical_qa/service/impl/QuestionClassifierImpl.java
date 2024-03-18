@@ -12,14 +12,14 @@ import java.util.*;
 public class QuestionClassifierImpl implements QuestionClassifier {
 
     // 医疗特征词文件路径
-    private static final String CHECK_FILE_PATH = "E:\\Medical_QA\\src\\main\\resources\\data\\check.txt";
-    private static final String DENY_FILE_PATH = "E:\\Medical_QA\\src\\main\\resources\\data\\deny.txt";
-    private static final String DEPARTMENT_FILE_PATH = "E:\\Medical_QA\\src\\main\\resources\\data\\department.txt";
-    private static final String DISEASE_FILE_PATH = "E:\\Medical_QA\\src\\main\\resources\\data\\disease.txt";
-    private static final String DRUG_FILE_PATH = "E:\\Medical_QA\\src\\main\\resources\\data\\drug.txt";
-    private static final String FOOD_FILE_PATH = "E:\\Medical_QA\\src\\main\\resources\\data\\food.txt";
-    private static final String PRODUCER_FILE_PATH = "E:\\Medical_QA\\src\\main\\resources\\data\\producer.txt";
-    private static final String SYMPTOM_FILE_PATH = "E:\\Medical_QA\\src\\main\\resources\\data\\symptom.txt";
+    private static final String CHECK_FILE_PATH = "src\\main\\resources\\data\\check.txt";
+    private static final String DENY_FILE_PATH = "src\\main\\resources\\data\\deny.txt";
+    private static final String DEPARTMENT_FILE_PATH = "src\\main\\resources\\data\\department.txt";
+    private static final String DISEASE_FILE_PATH = "src\\main\\resources\\data\\disease.txt";
+    private static final String DRUG_FILE_PATH = "src\\main\\resources\\data\\drug.txt";
+    private static final String FOOD_FILE_PATH = "src\\main\\resources\\data\\food.txt";
+    private static final String PRODUCER_FILE_PATH = "src\\main\\resources\\data\\producer.txt";
+    private static final String SYMPTOM_FILE_PATH = "src\\main\\resources\\data\\symptom.txt";
 
     // 读取文件的工具类
     private final TextFileReader textFileReader = new TextFileReader();
@@ -83,64 +83,64 @@ public class QuestionClassifierImpl implements QuestionClassifier {
         List<String> questionTypes = new ArrayList<>();
 
         // 问题分类逻辑...
-        if (qWord(question, symptomQwds) && types.contains("disease")) {
+        if (qWord(question, symptomQwds) && types.contains("Disease")) {
             questionTypes.add("DiseaseSymptom");
         }
-        if (qWord(question, symptomQwds) && types.contains("symptom")) {
+        if (qWord(question, symptomQwds) && types.contains("Symptom")) {
             questionTypes.add("SymptomDisease");
         }
-        if (qWord(question, causeQwds) && types.contains("disease")) {
+        if (qWord(question, causeQwds) && types.contains("Disease")) {
             questionTypes.add("DiseaseCause");
         }
-        if (qWord(question, acompanyQwds) && types.contains("disease")) {
+        if (qWord(question, acompanyQwds) && types.contains("Disease")) {
             questionTypes.add("DiseaseAccompany");
         }
-        if (qWord(question, foodQwds) && types.contains("disease")) {
+        if (qWord(question, foodQwds) && types.contains("Disease")) {
             if (qWord(question, denyWord)) {
                 questionTypes.add("DiseaseNotFood");
             } else {
                 questionTypes.add("DiseaseFood");
             }
         }
-        if (qWord(question, drugQwds) && types.contains("disease")) {
+        if (qWord(question, drugQwds) && types.contains("Disease")) {
             questionTypes.add("DiseaseDrug");
         }
-        if (qWord(question, cureQwds) && types.contains("drug")) {
+        if (qWord(question, cureQwds) && types.contains("Drug")) {
             questionTypes.add("DrugDisease");
         }
-        if (qWord(question, checkQwds) && types.contains("drug")) {
+        if (qWord(question, checkQwds) && types.contains("Drug")) {
             questionTypes.add("DrugProducer");
         }
-        if (qWord(question, checkQwds) && types.contains("disease")) {
+        if (qWord(question, checkQwds) && types.contains("Disease")) {
             questionTypes.add("DiseaseCheck");
         }
-        if (qWord(question, preventQwds) && types.contains("disease")) {
+        if (qWord(question, preventQwds) && types.contains("Disease")) {
             questionTypes.add("DiseasePrevent");
         }
-        if (qWord(question, lasttimeQwds) && types.contains("disease")) {
+        if (qWord(question, lasttimeQwds) && types.contains("Disease")) {
             questionTypes.add("DiseaseLasttime");
         }
-        if (qWord(question, curewayQwds) && types.contains("disease")) {
+        if (qWord(question, curewayQwds) && types.contains("Disease")) {
             questionTypes.add("DiseaseCureway");
         }
-        if (qWord(question, cureprobQwds) && types.contains("disease")) {
+        if (qWord(question, cureprobQwds) && types.contains("Disease")) {
             questionTypes.add("DiseaseCureprob");
         }
-        if (qWord(question, easygetQwds) && types.contains("disease")) {
+        if (qWord(question, easygetQwds) && types.contains("Disease")) {
             questionTypes.add("DiseaseEasyget");
         }
-        if (qWord(question, belongQwds) && types.contains("disease")) {
+        if (qWord(question, belongQwds) && types.contains("Disease")) {
             questionTypes.add("DiseaseBelong");
         }
-        if (qWord(question, belongQwds) && types.contains("producer")) {
+        if (qWord(question, belongQwds) && types.contains("Producer")) {
             questionTypes.add("ProducedBy");
         }
         // 如果没有分类到具体的问题类型，那么就按照疾病描述来回答
-        if (questionTypes.isEmpty() && types.contains("disease")) {
+        if (questionTypes.isEmpty() && types.contains("Disease")) {
             questionTypes.add("DiseaseDesc");
         }
         // 如果没有分类到具体的问题类型，那么就按照症状描述来回答
-        if (questionTypes.isEmpty() && types.contains("symptom")) {
+        if (questionTypes.isEmpty() && types.contains("Symptom")) {
             questionTypes.add("SymptomDisease");
         }
 
@@ -185,13 +185,13 @@ public class QuestionClassifierImpl implements QuestionClassifier {
         symptomWord = textFileReader.readTextFile(SYMPTOM_FILE_PATH);
         denyWord = textFileReader.readTextFile(DENY_FILE_PATH);
 
-        addWordsToDict(checkWord, "check");
-        addWordsToDict(departmentWord, "department");
-        addWordsToDict(diseaseWord, "disease");
-        addWordsToDict(drugWord, "drug");
-        addWordsToDict(foodWord, "food");
-        addWordsToDict(producerWord, "producer");
-        addWordsToDict(symptomWord, "symptom");
+        addWordsToDict(checkWord, "Check");
+        addWordsToDict(departmentWord, "Department");
+        addWordsToDict(diseaseWord, "Disease");
+        addWordsToDict(drugWord, "Drug");
+        addWordsToDict(foodWord, "Food");
+        addWordsToDict(producerWord, "Producer");
+        addWordsToDict(symptomWord, "Symptom");
     }
 
     private void addWordsToDict(List<String> words, String type) {

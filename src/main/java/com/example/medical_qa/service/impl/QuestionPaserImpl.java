@@ -4,6 +4,7 @@ import com.example.medical_qa.dao.DiseaseRepository;
 import com.example.medical_qa.dao.DrugRepository;
 import com.example.medical_qa.dao.ProducerRepository;
 import com.example.medical_qa.dao.SymptomRepository;
+import com.example.medical_qa.entity.Disease;
 import com.example.medical_qa.service.QuestionPaser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -121,7 +122,12 @@ public class QuestionPaserImpl implements QuestionPaser {
                     break;
                 // 查询疾病的相关介绍
                 case "DiseaseDesc":
-                    answer.addAll(diseaseRepository.findDescByName(entity));
+                    Disease diseaseByName = diseaseRepository.findDiseaseByName(entity);
+                    System.out.println(diseaseByName);
+                    List<String> desc = new ArrayList<>();
+                    desc.add(diseaseByName.getName());
+                    desc.add(diseaseByName.getDesc());
+                    answer.add(desc);
                     break;
                 // 查询疾病有哪些症状
                 case "DiseaseSymptom":
@@ -180,7 +186,7 @@ public class QuestionPaserImpl implements QuestionPaser {
             List<String> types = entry.getValue();
             for (String type : types) {
                 if (!entityDict.containsKey(arg)) {
-                    entityDict.put(type, new ArrayList<>());
+                    entityDict.put(type, Collections.singletonList(arg));
                 } else {
                     entityDict.get(type).add(arg);
                 }

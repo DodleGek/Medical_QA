@@ -69,7 +69,6 @@ public interface DiseaseRepository extends Neo4jRepository<Disease, Long> {
     List<String> findEasyGetByName(@Param("name") String name);
 
     // 根据疾病名称查询疾病的描述
-    @Query("MATCH (d:Disease) WHERE d.name = $name RETURN d.name,d.desc")
-    List<String> findDescByName(@Param("name") String name);
-
+    @Query("MATCH (d:Disease) WHERE d.name = $name RETURN d limit 1")
+    Disease findDiseaseByName(@Param("name") String name);
 }

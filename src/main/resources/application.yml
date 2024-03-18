@@ -1,6 +1,19 @@
+
+
+server:
+  port: 8080
+
 spring:
   neo4j:
-    uri: bolt://192.168.10.8:7687
+    uri: bolt://localhost:7687
     authentication:
       username: neo4j
-      password: Lhyu100218..
+      password: 123456789
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    # 禁用Spring Boot自动配置的数据源
+    autoconfigure: false
+logging:
+  level:
+    org.springframework.data.neo4j: DEBUG
